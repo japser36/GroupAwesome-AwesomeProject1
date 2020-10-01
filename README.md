@@ -10,9 +10,8 @@ Things done:
 Execution function: 
 Simplifying the code by allowing calls to execution function to display current pid before program execution. And exit if the program has failed to run.
 
-// Discard
-Given main() parsing method as the parent process. All repeat of copies process will be child to the main. While the count specified (int 1 to 9) is not yet satisfied. The while loop runs till count is 0, and the wait status maintains child running before turning to parent. 
-//
+Discard
+~~Given main() parsing method as the parent process. All repeat of copies process will be child to the main. While the count specified (int 1 to 9) is not yet satisfied. The while loop runs till count is 0, and the wait status maintains child running before turning to parent. 
 
 Sample output for sequential output:
 closh> hostname
