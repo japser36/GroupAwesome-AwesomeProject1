@@ -101,7 +101,7 @@ int main() {
                 exe(cmdTokens[0], cmdTokens);
             } else {
                 count--;
-                //fi parallel we want to wait until the last command has finished before running the next command
+                //if parallel we want to wait until the last command has finished before running the next command
                 if(!parallel){
                     //Makes the parent stop execution and wait on the child to finish
                     waitpid(childPid,NULL, 0);
