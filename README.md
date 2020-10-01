@@ -1,9 +1,10 @@
 # GroupAwesome-AwesomeProject1
 
 Things done: 
-1. Seperation of the execution function for code simplicity 
+1. Seperation of the closh function into a separate execution function for code simplicity 
 2. Established a time out handler via the alarm() function
 3. A wait status to ensure that the parent process till wait till all childs have executed (Differentiating seq. and parallel processing)
+4. Fixed issue with regards to IDE errors
 
 
 Execution function: 
