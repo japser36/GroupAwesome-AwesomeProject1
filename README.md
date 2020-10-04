@@ -11,6 +11,9 @@ Execution function (exe): It simplifies the code by placing the execvp command o
 
 While loop for printing: Handles the task of printing user-specified text (in an example, the hostname is printed in below sample outputs)—checks for process validity by checking if pid is 0. If true, continues to the exe function as mentioned above. The parallel and sequential processing are handled within the method shown inline 108-117 in closh.c.
 
+Alarm function (handler): 
+Alerts the user of program time out and exits the program, allowing for troubleshooting.  
+
 ### 1.1 Contributions
 - Brian: documentation
 - Brandon: coding
