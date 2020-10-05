@@ -1,5 +1,8 @@
 // closh.c - COSC 315, Winter 2020
-// YOUR NAME HERE
+// RACHELLE GELDEN
+// JASPER LOOMAN
+// BRIAN SU
+// BRANDON UNGER
 
 #include <stdio.h>
 #include <unistd.h>
