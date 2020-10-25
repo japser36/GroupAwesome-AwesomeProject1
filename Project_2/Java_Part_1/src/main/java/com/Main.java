@@ -14,13 +14,10 @@ public class Main {
     public static final int numberOfConsumers = 5;
     public static final int QueueCapacity = 5;
 
-
-
     //Start the program
     public static void main(String[] args){
         Main program = new Main();
     }
-
 
     //Still starting the program
     public Main(){
@@ -38,8 +35,5 @@ public class Main {
         for(int i = 0; i < numberOfConsumers+1; i++){
             threads[i].start();
         }
-
-
-
     }
 }

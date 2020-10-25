@@ -33,26 +33,30 @@ public class BoundedQueue implements Queue<Job>{
     }
 
     private synchronized boolean offerImplementation(Job job) {
-        if (remainingSpaces > 0) {
-            jobs[enqueueIndex] = job;
-            enqueueIndex = ++enqueueIndex == jobs.length ? 0 : enqueueIndex;
-            remainingSpaces--;
-            return true;
+        if (remainingSpaces <= 0) {
+            return false;
         } else {
-            throw new IllegalArgumentException();
+            jobs[enqueueIndex] = job;
+            enqueueIndex = ++enqueueIndex % size;
+            remainingSpaces--;
+            notify();
+            return true;
         }
     }
 
     private synchronized Job pollImplementation() {
         if (remainingSpaces == size) {
-            return null;
-        } else {
+            try {
+                wait();
+            } catch (InterruptedException interruptedException) {
+                interruptedException.printStackTrace();
+            }
+        }
             Job job = jobs[dequeueIndex];
             jobs[dequeueIndex] = null;
-            dequeueIndex = ++dequeueIndex == jobs.length ? 0 : dequeueIndex;
+            dequeueIndex = ++dequeueIndex % size;
             remainingSpaces++;
             return job;
-        }
     }
 
     @Override
