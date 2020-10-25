@@ -33,30 +33,40 @@ public class BoundedQueue implements Queue<Job>{
     }
 
     private synchronized boolean offerImplementation(Job job) {
+        // if there are no more spots in the queue, it will return false
         if (remainingSpaces <= 0) {
             return false;
         } else {
             jobs[enqueueIndex] = job;
+
+            // if the incremented enqueue index is fully divisible by the size (its equal to the size)
+            // then we set the enqueue back to zero to add new jobs to the beginning of the array
             enqueueIndex = ++enqueueIndex % size;
             remainingSpaces--;
-            notify();
+            notify();   // notify threads that are waiting to poll that an element has been added
             return true;
         }
     }
 
     private synchronized Job pollImplementation() {
+        // there are no jobs in the queue
         if (remainingSpaces == size) {
             try {
+                // release the lock for other threads to use, while this thread waits for another
+                // job to be added to the queue
                 wait();
             } catch (InterruptedException interruptedException) {
                 interruptedException.printStackTrace();
             }
         }
-            Job job = jobs[dequeueIndex];
-            jobs[dequeueIndex] = null;
-            dequeueIndex = ++dequeueIndex % size;
-            remainingSpaces++;
-            return job;
+        Job job = jobs[dequeueIndex];
+        jobs[dequeueIndex] = null;
+
+        // if the incremented dequeue index is fully divisible by the size (its equal to the size)
+        // then we set the enqueue back to zero to remove jobs from the beginning of the array
+        dequeueIndex = ++dequeueIndex % size;
+        remainingSpaces++;
+        return job;
     }
 
     @Override
