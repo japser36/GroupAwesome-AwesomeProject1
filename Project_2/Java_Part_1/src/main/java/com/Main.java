@@ -14,19 +14,14 @@ public class Main {
     public static final int numberOfConsumers = 5;
     public static final int QueueCapacity = 5;
 
-
-
     //Start the program
     public static void main(String[] args){
         Main program = new Main();
     }
 
-
     //Still starting the program
     public Main(){
-        //Creating the queue using java's one concurrent queue (which are thread safe, I do not need to use synchronize) with a max capacity
-        Queue<Job> queue = new LinkedBlockingQueue<Job>(QueueCapacity);
-
+        Queue<Job> queue = new BoundedQueue(QueueCapacity);
 
         //creating the consumer threads with the queue
         Thread[] threads = new Thread[numberOfConsumers+1];
@@ -40,8 +35,5 @@ public class Main {
         for(int i = 0; i < numberOfConsumers+1; i++){
             threads[i].start();
         }
-
-
-
     }
 }
