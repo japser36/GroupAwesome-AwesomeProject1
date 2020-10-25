@@ -24,9 +24,7 @@ public class Main {
 
     //Still starting the program
     public Main(){
-        //Creating the queue using java's one concurrent queue (which are thread safe, I do not need to use synchronize) with a max capacity
-        Queue<Job> queue = new LinkedBlockingQueue<Job>(QueueCapacity);
-
+        Queue<Job> queue = new BoundedQueue(QueueCapacity);
 
         //creating the consumer threads with the queue
         Thread[] threads = new Thread[numberOfConsumers+1];
