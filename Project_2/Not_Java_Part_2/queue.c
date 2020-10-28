@@ -1,11 +1,8 @@
-#include <stdio.h>
-#include <unistd.h>
+
 #include <stdlib.h>
 #include <string.h>
-#include <signal.h>
-#include <sys/wait.h>
 #include <semaphore.h>
-
+#include <pthread.h>
 
 #define Capacity 10
 
@@ -31,12 +28,16 @@ typedef struct {
     int head, tail, size;
     sem_t emtpy;
     sem_t full;
+    pthread_mutex_t mutex;
     Job* buffer[Capacity];
 } Queue;
 
 //simple method to memory allocate set and return a populated queue struct
  Queue* createQueue(){
      Queue* q = malloc(sizeof(Queue));
+     //initialise the semaphores to carry across threads and locking values
+     sem_init(&q->emtpy, 0, 0);
+     sem_init(&q->full, 0, Capacity);
      q->size = 0;
      q->head = 0;
      q->tail = 0;
@@ -44,55 +45,43 @@ typedef struct {
  }
 
 
-int isFull(Queue* q){
-    int out = 0;
-    if(q->size == Capacity-1){
-        out = 1;
-    }
-    return out;
-}
 
-int isEmpty(Queue* q){
-    int out = 0;
-    if(q->size == 0){
-        out = 1;
-    }
-    return out;
 
-}
+ int enqueue(Queue* q, Job* j){
+     //check to see if queue is full, if not we can proceed else we have to wait until there is empty slot
+     sem_wait(&q->full);
+     //acquire lock
+     pthread_mutex_lock(&q->mutex);
 
- int enqueueImp(Queue* q, Job* j){
-     int out = 1;
-     if(isFull(q)){
-         out = 0;
-     }
-     q->buffer[q->tail+1] = j;
+     q->buffer[q->tail] = j;
      q->tail = (q->tail + 1) % Capacity;
      q->size = q->size + 1;
-     return out;
+
+     //release lock
+     pthread_mutex_unlock(&q->mutex);
+     //increment emtpy, as there is one more item in the queue
+     sem_post(&q->emtpy);
+     return 1;
  }
 
 
- Job* dequeueImp(Queue* q){
-     if(isEmpty(q)) {
+ Job* dequeue(Queue* q){
+     //check to see if queue is empty, if not we can proceed else we have to wait until there is an item
+     sem_wait(&q->emtpy);
+     //acquire lock
+     pthread_mutex_lock(&q->mutex);
 
-     }
      Job* j = q->buffer[q->head];
-     q->head = (q->head-1) % Capacity;
+     q->buffer[q->head] = NULL;
+     q->head = (q->head+1) % Capacity;
      q->size = q->size - 1;
+
+     //release lock
+     pthread_mutex_unlock(&q->mutex);
+     //increment full, as there is one less item in the queue
+     sem_post(&q->full);
      return j;
  }
-
- //Interface level access to the queues enqueue function
-int enqueue(Queue* q, Job* job){
-     return enqueueImp(q, job);
-
-}
-
- //Interface level access to the queues dequeue function
-Job* dequeue(Queue* q){
-     return dequeueImp(q);
-}
 
 
 
