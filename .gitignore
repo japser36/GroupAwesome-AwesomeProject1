@@ -1,4 +1,12 @@
+### IntelliJ IDEA ###
 .idea
+*.iws
+*.iml
+*.ipr
+
+#Java
+*.class
+
 
 # CMake
 cmake-build-*/
