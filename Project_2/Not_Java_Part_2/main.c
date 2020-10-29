@@ -43,12 +43,16 @@ void* producerFunction(void* arg){
     Queue *queue = arg;
 
     while (1) {
+        // Creating new jobs and placing it into the Queue for the consumer function
         Job* job = createJob(NextRequestId++, randomNumber(JobMinWait, JobMaxWait));
+        // Calling enqueue from queue.c that checks for queue availability,
+        // where the job will either be added or wait till there is an opening
         enqueue(queue, job);
 
         time(&t);
         printf("Producer: produced request ID %d, length %d seconds at time %s", job->requestId, job->requestWaitTime, ctime(&t));
         fflush(stdout);
+        // Generate a randomized sleep time per function
         int sleepTime = randomNumber(ProducerMinWait, ProducerMaxWait);
         printf("Producer: sleeping for %d seconds\n", sleepTime );
         fflush(stdout);
@@ -67,12 +71,17 @@ void* consumerFunction(void* arg){
     Queue *queue = b->q;
 
     while (1) {
+        // Obtaining the job object from queue handled in queue.c
+        // availability and lock is handled there
         Job *job = dequeue(queue);
         time(&t);
+        // begin running consumer tasks 
         printf("Consumer %d: assigned request ID %d, processing request for the next %d seconds, current time is %s",id, job->requestId, job->requestWaitTime, ctime(&t));
         fflush(stdout);
+        // Sleep for the required time that job requires to complete its task
         sleep(job->requestWaitTime);
         time(&t);
+        // print statement to prove completion of the job after sleep
         printf("Consumer %d: completed request ID %d at time %s", id, job->requestId, ctime(&t));
         fflush(stdout);
     }
