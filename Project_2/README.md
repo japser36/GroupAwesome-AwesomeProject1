@@ -1,16 +1,27 @@
 # GroupAwesome-AwesomeProject1
 
-Some of the problem i had while trying to make this for java:
-That the question makes me print things from the consumer and the job, which means I can't even use interfaces.
-
-
-some problems i had with c, it not opp which is a pain. the pointer are a real pain as its hard to know what to use and where is is var, *var, **var, &var. 
-memory on the stack was a huge pain. I had object overrideing each other due to a thread being slow and that part of the stack was "not longer in use" so a new object just when there. 
-C has shit error messages, like its the same as a http 500 error, basicly something when wrong. To top that it throws error randomly sometime.
- Like no joke i was in the main method with no threads on a for loop and it was like ahhhh this increment causes a segfault, and i was like dufuk C. 
-The documentation is complete garbage, like its hard to find how to use anything or how it interacts with anything, basicly its just a list of function and you have to brute force 
-your way to find the function that your want. 
+## 1. Accomplished Items
 
 
 
-configeration for each part can be found at the top of the main file.
+## 1.1 Build instructions
+1. Clone repo
+2. Navigate inside `GroupAwesome-AwesomeProject1` directory
+3. Compile
+4. Run _____ using the following command `./main`
+
+## 1.2 Contributions
+- Brian: documentation
+- Brandon: coding
+- Jasper: coding
+- Rachelle: documentation
+
+## 2 Discussion of process
+
+Some of the problem I had while trying to make this for java is that the question makes me print things from the consume and the job, which means I can't use interfaces.
+
+Some problems that I had with C is it is not an OOP which is a pain. The different variation of pointers made it difficult to determine which to use, or where a certain variable is. Memory on the stack was a huge pain where object override eeach other due to a slower thread or a new object replaced the stack as it was "no longer in use."
+
+While troubleshooting, the C error messages are non-informative in saying something went wrong without stating the cause of the issue. There were instances of random error being thrown, i.e. in the main method with no threads on a for loop. C prompted that this increment causes a segfault when it doesn't and shouldn't.
+
+In addition, the documentation is not up to standard, making it extremely difficult to find how to use anything or how it interacts with other method, actions, etc. Resulting in the need of brute forcing through lists of functions to find the function that matched my use case.

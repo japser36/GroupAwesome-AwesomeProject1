@@ -18,6 +18,7 @@ Job* createJob(int requestId, int requestWaitTime){
     j->requestId = 0;
     j->requestWaitTime = 0;
 
+// Get methods for the job parameter values
     j->requestId = requestId;
     j->requestWaitTime = requestWaitTime;
     return j;
