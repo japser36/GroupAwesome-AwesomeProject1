@@ -2,11 +2,11 @@
 
 ## 1. Accomplished Items  
 
-** Java program **
+**Java program**
 1. Monitor implemented
 2.  
 
-**  C Program **
+**C Program**
 1. Producer production with wait time
 2. Consumer consumption with wait time
 3. Process sleeps to allow for process completions
@@ -15,10 +15,10 @@
 
 ## 1.1 Build instructions   
 
-** C Program **
+**C Program**
 1. Clone repo
 2. Navigate inside `GroupAwesome-AwesomeProject1` directory
-3. Compile program by running gcc main.c
+3. Compile program by running `gcc main.c`
 
   - CMakeList already contains information that allows compilation including queue.c and pthread handling4
   - If you are on different compiler/platforms and run into error due to pthread. Try the following commands to:
@@ -31,7 +31,7 @@
 
 4. Run the compiled program using the following command `./main`
 
-** Java program  **  
+**Java program**  
 1. Clone repo
 2. Navigate inside `GroupAwesome-AwesomeProject1` directory
 3. Compile program by running
@@ -56,7 +56,7 @@ Also, the documentation is not up to standard, making it extremely difficult to 
 
 ## 3 Sample outputs  
 
-** C Program **
+**C Program**  
 """
 Producer: produced request ID 0, length 4 seconds at time Wed Nov  4 16:07:47 2020
 Producer: sleeping for 1 seconds
@@ -73,4 +73,4 @@ Producer: produced request ID 3, length 2 seconds at time Wed Nov  4 16:07:52 20
 Producer: sleeping for 1 seconds
 """
 
-** Java program **  
+**Java program**  
