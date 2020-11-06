@@ -4,7 +4,9 @@
 
 **Java program**
 1. Monitor implemented
-2.  
+2. Configuration options for the program itself
+3. Implemented with the `synchornized` keyword 
+4. Formatted output file as per requirements
 
 **C Program**
 1. Producer production with wait time
@@ -34,7 +36,12 @@
 **Java program**  
 1. Clone repo
 2. Navigate inside `GroupAwesome-AwesomeProject1` directory
-3. Compile program by running
+3. Load the Java project into IDE of choice
+  - While loading project, users may encounter error where project setup files from the repo may cause wrongly set JRE versions
+    - Can be resolved by going into IDE setting to set correct JRE env. installed on local machine (Eclipse issue)
+    - No errors of such when running with Intellij Idea
+4. Configure the program if users have specific parameters in mind, configuration for `JobLength, producerWaitTime, numberOfConsumers, and QueueCapacity` available in `Main.java`
+5. Run program via run of IDE
 
 
 ## 1.2 Contributions
@@ -74,3 +81,19 @@ Producer: sleeping for 1 seconds
 """
 
 **Java program**  
+"""
+Files\Java\jdk1.8.0_201\jre\lib\rt.jar;C:\Users\***\Desktop\P2\out\production\P2" com.Main
+Consumer 0: assigned request ID 0, processing request for the next 4 seconds, current time is 2020-11-07T04:02:31.561
+Producer: produced request ID 1, length 4 seconds at time 2020-11-07T04:02:31.561 Producer: sleeping for 4 seconds
+Consumer 0: completed request ID 0 at time2020-11-07T04:02:35.562
+Consumer 1: assigned request ID 1, processing request for the next 5 seconds, current time is 2020-11-07T04:02:35.562
+Producer: produced request ID 2, length 5 seconds at time 2020-11-07T04:02:35.562 Producer: sleeping for 2 seconds
+Consumer 2: assigned request ID 2, processing request for the next 5 seconds, current time is 2020-11-07T04:02:37.563
+Producer: produced request ID 3, length 5 seconds at time 2020-11-07T04:02:37.564 Producer: sleeping for 5 seconds
+Consumer 1: completed request ID 1 at time2020-11-07T04:02:40.563
+Consumer 2: completed request ID 2 at time2020-11-07T04:02:42.564
+Consumer 3: assigned request ID 3, processing request for the next 5 seconds, current time is 2020-11-07T04:02:42.565
+Producer: produced request ID 4, length 5 seconds at time 2020-11-07T04:02:42.565 Producer: sleeping for 5 seconds
+Consumer 4: assigned request ID 4, processing request for the next 5 seconds, current time is 2020-11-07T04:02:47.566
+
+"""
