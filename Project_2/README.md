@@ -60,10 +60,12 @@
 ### Design
 
 **Java:**
+
 When dealing with monitors (or class wide) locks, we can not gave the consumer notify the producer as java does not differentiate between different locks in different functions.
 The design is based on a standard producer and consumer pattern with a monitor queue. When a queue is empty any consumer attempting to pull from the queue will wait for a notification from the producer. When the queue is full and the producer tries to add to the queue it will release its lock and sleep for one second. This number can be changed in the Producer.java file.
 
 **C:**
+
 The design is based on a standard producer and consumer pattern with a blocking queue. When a queue is empty any consumer attempting to pull from the queue it will be stopped by a semaphore and have to wait for a notification from the producer. When a queue is full and the producer attempts to put a task in the queue it will be stopped by a semaphore and have to wait for a notification from any consumer. To enforce concurrency there is a mutex that is used during add and remove process of the queue, this ensures that only one thread can add or remove items from the queue at one time.
 
 ### Difficulties
@@ -79,7 +81,8 @@ Also, the documentation is not up to standard, making it extremely difficult to 
 ## 3 Sample outputs  
 
 **C Program**  
-"""
+
+```
 Producer: produced request ID 0, length 4 seconds at time Wed Nov  4 16:07:47 2020  
 Producer: sleeping for 1 seconds    
 Consumer 2: assigned request ID 0, processing request for the next 4 seconds, current time is Wed Nov  4 16:07:47 2020  
@@ -93,10 +96,11 @@ Consumer 3: completed request ID 1 at time Wed Nov  4 16:07:51 2020
 Consumer 2: completed request ID 0 at time Wed Nov  4 16:07:51 2020   
 Producer: produced request ID 3, length 2 seconds at time Wed Nov  4 16:07:52 2020    
 Producer: sleeping for 1 seconds    
-"""
+```
 
 **Java program**  
-"""
+
+```
 Files\Java\jdk1.8.0_201\jre\lib\rt.jar;C:\Users\***\Desktop\P2\out\production\P2" com.Main    
 Consumer 0: assigned request ID 0, processing request for the next 4 seconds, current time is 2020-11-07T04:02:31.561   
 Producer: produced request ID 1, length 4 seconds at time 2020-11-07T04:02:31.561 Producer: sleeping for 4 seconds
@@ -111,4 +115,4 @@ Consumer 3: assigned request ID 3, processing request for the next 5 seconds, cu
 Producer: produced request ID 4, length 5 seconds at time 2020-11-07T04:02:42.565 Producer: sleeping for 5 seconds
 Consumer 4: assigned request ID 4, processing request for the next 5 seconds, current time is 2020-11-07T04:02:47.566   
 
-"""
+```
