@@ -1,13 +1,13 @@
 # GroupAwesome-AwesomeProject1-Project2
 
-## 1.2 Contributions
+## Contributions
 
 - Brian: documentation
 - Brandon: coding
 - Jasper: coding
 - Rachelle: documentation
 
-## 1. Accomplished Items  
+## Accomplished Items  
 
 **Java program**
 1. Monitor queue implemented
@@ -23,9 +23,9 @@
 4. Formatted output file as per requirements
 5. Implemented with pthreads library
 
-## 1.1 Build instructions   
+## 1 Build instructions   
 
-**C Program**
+**1.1 C Program**
 1. Clone repo
 2. Navigate inside `GroupAwesome-AwesomeProject1` directory then to subfolder `Project_2`
     - C program located inside `Not_Java_Part_2`
@@ -42,7 +42,7 @@
 
 4. Run the compiled program using the following command `./main`
 
-**Java program**  
+**1.2 Java program**  
 1. Clone repo
 2. Navigate inside `GroupAwesome-AwesomeProject1` directory then to subfolder `Project_2`
     - Java program located in `Java_Part_1`
@@ -57,7 +57,7 @@
 
 ## 2 Discussion of process  
 
-### Design
+### 2.1 Design
 
 **Java:**
 
@@ -68,7 +68,7 @@ The design is based on a standard producer and consumer pattern with a monitor q
 
 The design is based on a standard producer and consumer pattern with a blocking queue. When a queue is empty any consumer attempting to pull from the queue it will be stopped by a semaphore and have to wait for a notification from the producer. When a queue is full and the producer attempts to put a task in the queue it will be stopped by a semaphore and have to wait for a notification from any consumer. To enforce concurrency there is a mutex that is used during add and remove process of the queue, this ensures that only one thread can add or remove items from the queue at one time.
 
-### Difficulties
+### 2.2 Difficulties
 
 Some of the problems I had while trying to make this for java is that the question makes me print outputs from the consumer and the job, which means I can't use interfaces properly.
 
@@ -80,7 +80,7 @@ Also, the documentation is not up to standard, making it extremely difficult to 
 
 ## 3 Sample outputs  
 
-**C Program**  
+**3.1 C Program**  
 
 ```
 Producer: produced request ID 0, length 4 seconds at time Wed Nov  4 16:07:47 2020  
@@ -98,7 +98,7 @@ Producer: produced request ID 3, length 2 seconds at time Wed Nov  4 16:07:52 20
 Producer: sleeping for 1 seconds    
 ```
 
-**Java program**  
+**3.2 Java program**  
 
 ```
 Files\Java\jdk1.8.0_201\jre\lib\rt.jar;C:\Users\***\Desktop\P2\out\production\P2" com.Main    
