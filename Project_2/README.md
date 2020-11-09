@@ -5,7 +5,7 @@
 - Brian: documentation
 - Brandon: coding
 - Jasper: coding
-- Rachelle: documentation
+- Rachelle: coding & documentation
 
 ## Accomplished Items  
 
@@ -54,14 +54,12 @@
 5. Run program via run of IDE
 
 
-
 ## 2 Discussion of process  
 
 ### 2.1 Design
 
 **Java:**
 
-When dealing with monitors (or class wide) locks, we can not gave the consumer notify the producer as java does not differentiate between different locks in different functions.
 The design is based on a standard producer and consumer pattern with a monitor queue. When a queue is empty any consumer attempting to pull from the queue will wait for a notification from the producer. When the queue is full and the producer tries to add to the queue it will release its lock and sleep for one second. This number can be changed in the Producer.java file.
 
 **C:**
@@ -71,6 +69,8 @@ The design is based on a standard producer and consumer pattern with a blocking 
 ### 2.2 Difficulties
 
 Some of the problems I had while trying to make this for java is that the question makes me print outputs from the consumer and the job, which means I can't use interfaces properly.
+
+When dealing with monitors (or class wide) locks, it was difficult to complete synchronization between producers and consumers because Java is not able to differeniate between different locks used by different functions that are a part of the monitor class (ie. the lock for the consumers vs the lock for the producer).
 
 Some problems that I had with C are it is not an OOP, which is a pain. The different pointers' different variations made it challenging to determine which to use or where a particular variable is. Memory on the stack was a colossal pain where object overrides each other due to a slower thread or a new object replaced the stack as it was "no longer in use."
 
