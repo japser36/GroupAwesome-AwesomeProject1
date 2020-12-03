@@ -7,7 +7,7 @@ class myFileSystem
   public myFileSystem(string diskName)
 {
    // Open the file with name diskName
-   
+   w
    // Read the first 1KB and parse it to structs/objecs representing the super block
    // 	An easy way to work with the 1KB memory chunk is to move a pointer to a
    //	position where a struct/object begins. You can use the sizeof operator to help
