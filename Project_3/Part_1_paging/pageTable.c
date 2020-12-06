@@ -28,37 +28,33 @@ int main(int argc, char *argv[]){
         printf("\nError while loading the file\n");
         exit(1);
     }
-    
-
-    // An attempt to do..while for better execution, the if-statement will be triggered at EOF or error
-    // terminating the do..while
-    // currently it is reading the file short or at random places 
-    // the test input file is called test.txt
-    do {
-      // read the line in strings
-      fscanf(rkt,"%s", fileData);
-
-      // prints the file data in the output
-      printf("Value of the test is %s at line \n", fileData);
-    } while((fscanf(rkt, "%s", fileData) != 1));
-
-
-
-    // Read is flawed, doesn't read the entire line is there is a space in the strings
-    // Will miss lines or read in extra lines at the EOF
-    //while(fscanf(rkt, "%s", fileData)) {
-
-        // read the line in strings
-    //    fscanf(rkt,"%s", fileData);
-
-        // prints the file data in the output
-     //   printf("Value of the test is %s at line \n", fileData);
       
-    //    if(fscanf(rkt, "%s", fileData) != 1){
-    //      break;
-    //    }
-     // }   
+    // this prints the first line of the test file
+    // read the line in strings
+       fscanf(rkt,"%s", fileData);
+    // prints the file data in the output
+      printf("Value of the test is %s \n", fileData);
 
+    // Switched the break condition to EOF as per fscanf design instead of using the previous
+    // fscanf(rkt, "%s ", fileData)!= 1 which seemed to cause issues in the sustem
+    while(fscanf(rkt, "%s ", fileData)) {
+        // prints the file data in the output
+        printf("Value of the test is %s\n", fileData);
+        // read the line in strings
+        fscanf(rkt,"%s ", fileData);
+        // if the reader has encountered EOF then break 
+        if(feof(rkt)){
+          break;
+        } else {
+          // prints the file data in the output
+        printf("Value of the test is %s\n", fileData);
+        }
+      }   
+    
+    // Idea for eof was inspired by this: 
+    // https://stackoverflow.com/questions/1835986/how-to-use-eof-to-run-through-a-text-file-in-c
+      
+      
 
     fclose(rkt);
     return 0;
@@ -89,3 +85,24 @@ int handleAddress(int n, int m, unsigned int v) {
   printf("virtual address %d is in page number %d and offset %d\n", v, p, d);
   return 0; // would return p and d in a struct here probably, but seems its not required for this project.
 }
+
+
+
+
+
+
+
+// Scraped attempt working attempt is above
+    // An attempt to do..while for better execution, the if-statement will be triggered at EOF or error
+    // terminating the do..while
+    // currently it is reading the file short or at random places 
+    // the test input file is called test.txt
+    /*
+    do {
+      // read the line in strings
+      fscanf(rkt,"%s", fileData);
+
+      // prints the file data in the output
+      printf("Value of the test is %s at line \n", fileData);
+    } while((fscanf(rkt, "%s", fileData) != 1));
+    */
