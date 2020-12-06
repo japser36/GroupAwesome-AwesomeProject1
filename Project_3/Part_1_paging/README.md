@@ -16,7 +16,8 @@
 1. gcc pageTable.c
 2. ./a.out
   - While running `a.out` input the file directory as `./test.txt`
-  - Sample output should look like:
+  - Sample output should look like:  
+  
 ![The sample output of the file read](/images/sampleInput.png)
 
 ## 2 Discussion of process  
