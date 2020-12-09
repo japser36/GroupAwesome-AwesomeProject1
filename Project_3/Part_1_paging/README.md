@@ -17,7 +17,8 @@
 2. ./a.out
   - While running `a.out` input the file directory as `./test.txt`
   - Sample output should look like:
-![The sample output of the file read](/images/sampleInput2.0.png)
+![The sample output of the file read](/images/bitwise.png)
+
 
 ## 2 Discussion of process  
 

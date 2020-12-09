@@ -4,19 +4,23 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
+/** 
+ * Handling of all the imports of file IO functions, @param {int} n and m for the later bitwise operations
+ * Implicit declaration of the handleAddress function before the main method to allow the usage within the main function 
+ * */
 
-// Import the IO operator under the name rkt 
 FILE *rkt;
-// Declaring the n and m variable going to be read from the file
 int n, m; 
 
 int handleAddress(int n, int m, unsigned int v);
 
 int main(int argc, char *argv[]){
-    // This will store user name for the file that they wish to open and read 
+    /**
+     * Declaring @param for file path that user can dictate where the binary address file is located 
+     * Filedata will be the int value read from file for bitwise operations 
+     * **/ 
     char filePath[255];
     int fileData;
-    int lineNumber = 128;
 
     // Getting user input for the file path to read into bitwise processor
     printf( "Enter the address of the input file : ");
@@ -30,9 +34,12 @@ int main(int argc, char *argv[]){
     // File open attempt and varification of file opened below
     rkt = fopen(filePath,"r");
     // If the file is not opened, return an error for the user to correct their mistake
+    // else continue and let user know that the operation has begun 
     if (rkt == NULL) {
         printf("\nError while loading the file\n");
         exit(1);
+    } else {
+      printf("\nFile read successfully, beginning read and addressing operations\n");
     }
 
     int count;
@@ -54,8 +61,15 @@ int main(int argc, char *argv[]){
     // prints the file data in the output
     printf("Value of the m value is %d \n", m); 
 
-    // Switched the break condition to EOF as per fscanf design instead of using the previous
-    // fscanf(rkt, "%s ", fileData)!= 1 which seemed to cause issues in the sustem
+
+    /**
+     * Switched the break condition to EOF as per fscanf design instead of using the previous
+     * fscanf(rkt, "%s ", fileData)!= 1 which seemed to cause issues in the sustem
+     * Idea for eof was inspired by this: 
+     * https://stackoverflow.com/questions/1835986/how-to-use-eof-to-run-through-a-text-file-in-c
+     * */
+
+    // 
     while(fscanf(rkt, "%d", &fileData)) {
        /**
         * Once the @param (int) n and @param (int) m are declared in the previous two lines of read 
@@ -64,21 +78,14 @@ int main(int argc, char *argv[]){
         * For each address in the file, we will send it through the handleAddress
         * **/
           handleAddress(n,m, fileData);
-          // read the line in strings
-          fscanf(rkt,"%d ", &fileData);
+         //fscanf(rkt,"%d ", &fileData);
+          //handleAddress(n,m, fileData);
 
           // if the reader has encountered EOF then break 
           if(feof(rkt)){
             break;
-          } else {
-            // prints the file data in the output
-          //printf("Value of the test is %d\n", fileData);
-          }
+          } 
       }   
-    
-    // Idea for eof was inspired by this: 
-    // https://stackoverflow.com/questions/1835986/how-to-use-eof-to-run-through-a-text-file-in-c
-      
       
 
     fclose(rkt);
@@ -98,7 +105,7 @@ PageTable createPageTable(){
  * handleAddress
  *
  * Extracts information from a virtual address and prints it out in the format expected by the assignment.
- * @param {int} n The n lowest significant bits that represent the offset
+ * @param {int} n The n lowest significant bits that represent the offs et
  * @param {int} m The next m bits that represent the page number; assume that n+m is always 16
  * @param {unsigned int} v The virtual address that needs to be mapped to a page number and offset
  */
