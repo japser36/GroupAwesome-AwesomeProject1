@@ -26,7 +26,7 @@ int main(int argc, char *argv[]){
     // using a string format input via scanf
     scanf("%s", filePath);
 
-    // varify the input, by printing the filepath back to the user
+    // verify the input, by printing the filepath back to the user
     printf( "\nYou entered: ");
     puts(filePath);
 
