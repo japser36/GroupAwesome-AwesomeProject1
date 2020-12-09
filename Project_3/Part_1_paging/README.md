@@ -26,6 +26,7 @@
 2. Run `a.out` by the command `./a.out`
   - While running `a.out` input the file directory as `./test.txt` to access the sample file we have provided 
   - Sample output should look like:
+  
 ![The sample output of the file read](/images/bitwise.png)
 
 ## 2 Discussion of process  
