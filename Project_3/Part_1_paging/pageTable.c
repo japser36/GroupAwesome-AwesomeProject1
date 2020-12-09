@@ -8,7 +8,6 @@
  * Handling of all the imports of file IO functions, @param {int} n and m for the later bitwise operations
  * Implicit declaration of the handleAddress function before the main method to allow the usage within the main function 
  * */
-
 FILE *rkt;
 int n, m; 
 
@@ -23,7 +22,7 @@ int main(int argc, char *argv[]){
     int fileData;
 
     // Getting user input for the file path to read into bitwise processor
-    printf( "Enter the address of the input file : ");
+    printf( "Enter the address of the input file: ");
     // using a string format input via scanf
     scanf("%s", filePath);
 
@@ -50,7 +49,7 @@ int main(int argc, char *argv[]){
     // Setting the value n for later bitwise operation here
     n = (int) (fileData);
     // prints the file data in the output
-    printf("Value of the n value is %d \n", n);
+    printf("\nValue of the n value is %d \n", n);
 
 
     // this prints the second line of the test file
@@ -59,7 +58,7 @@ int main(int argc, char *argv[]){
     // Setting the value n for later bitwise operation here
     m = (int) (fileData);
     // prints the file data in the output
-    printf("Value of the m value is %d \n", m); 
+    printf("Value of the m value is %d\n", m); 
 
 
     /**
@@ -70,23 +69,17 @@ int main(int argc, char *argv[]){
      * */
 
     // 
-    while(fscanf(rkt, "%d", &fileData)) {
-       /**
+    do {
+    /**
         * Once the @param (int) n and @param (int) m are declared in the previous two lines of read 
         * We can now start iterating through the addresses and return the results of these addresses at once
         * Hence, implicit declaration of the function handleAddress above main function allows us to call it right now 
         * For each address in the file, we will send it through the handleAddress
+        * This code has been shortened with the use of a do..while loop
         * **/
-          handleAddress(n,m, fileData);
-         //fscanf(rkt,"%d ", &fileData);
-          //handleAddress(n,m, fileData);
-
-          // if the reader has encountered EOF then break 
-          if(feof(rkt)){
-            break;
-          } 
-      }   
-      
+      fscanf(rkt, "%d", &fileData);
+      handleAddress(n,m, fileData);
+    } while (!feof(rkt));
 
     fclose(rkt);
     return 0;
