@@ -21,6 +21,7 @@ int main(int argc, char *argv[]){
      */
     char filePath[255];
     int fileData;
+    int bitmask = ~((~0) << 16);
 
     // Getting user input for the file path to read into bitwise processor
     printf("Enter the address of the input file: ");
@@ -46,7 +47,7 @@ int main(int argc, char *argv[]){
     // read the line in strings
     fscanf(rkt,"%d", &fileData);
     // Setting the value n for later bitwise operation here
-    n = (int) (fileData);
+    n = ((int) (fileData)) & bitmask;
     // prints the file data in the output
     printf("\nValue of the n value is %d \n", n);
 
@@ -55,7 +56,7 @@ int main(int argc, char *argv[]){
     // read the line in strings
     fscanf(rkt,"%d", &fileData);
     // Setting the value n for later bitwise operation here
-    m = (int) (fileData);
+    m = ((int) (fileData)) & bitmask;
     // prints the file data in the output
     printf("Value of the m value is %d\n", m); 
 
@@ -75,7 +76,7 @@ int main(int argc, char *argv[]){
          * This code has been shortened with the use of a do..while loop
          */
         fscanf(rkt, "%d", &fileData);
-        handleAddress(n,m, fileData);
+        handleAddress(n,m, fileData & bitmask);
     } while (!feof(rkt));
 
     // close the file now that we are done reading it, and return successfully
